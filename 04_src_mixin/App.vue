@@ -1,7 +1,8 @@
 <template>
     <div>
-        <School/>
-        <Student/>
+       <School/>
+       <hr>
+       <Student/>
     </div>
 </template>
 
@@ -13,3 +14,7 @@ export default {
    components:{School, Student},
 }
 </script>
+
+<style>
+
+</style>
