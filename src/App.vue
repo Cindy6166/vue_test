@@ -1,12 +1,12 @@
 <template>
   <div id="root">
-  <div class="todo-container">
-    <div class="todo-wrap">
-      <MyHeader/>
-     <List/>
-      <MyFooter/>
+    <div class="todo-container">
+      <div class="todo-wrap">
+        <MyHeader :addTodo="addTodo"/>
+        <List :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo" />
+        <MyFooter/>
+      </div>
     </div>
-  </div>
 </div>
 </template>
 
@@ -17,7 +17,33 @@ import MyFooter from './components/MyFooter.vue'
 
 export default {
     name:'App',
-    components:{MyHeader, List, MyFooter}
+    components:{MyHeader, List, MyFooter},
+    data(){
+    return {
+      todos:[
+        {id:'001', title:'Eating',done:true},
+        {id:'002', title:'Sleeping',done:false},
+        {id:'003', title:'Driving',done:true},
+      ]
+    }
+    },
+    methods:{
+      // add a todo
+      addTodo(todoObj){
+        // console.log('App recieve data',x);
+        this.todos.unshift(todoObj)
+      },
+      // checked or unchecked on a todo
+      checkTodo(id){
+        this.todos.forEach((todo)=>{
+          if(todo.id === id) todo.done = !todo.done
+        })
+      },
+      // delete a todo
+      deleteTodo(id){
+        this.todos = this.todos.filter(todo => todo.id !== id)
+      }
+    }
 }
 </script>
 
