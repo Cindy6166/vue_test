@@ -3,14 +3,32 @@
     <label>
       <input type="checkbox" />
     </label>
-    <span> <span>已完成0</span> / 全部2 </span>
-    <button class="btn btn-danger">清除已完成任务</button>
+    <span> <span>Completed {{doneTotal}}</span> / All {{todos.length}} </span>
+    <button class="btn btn-danger">clear all completed tasks</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "MyFooter",
+  props:['todos'],
+  computed:{
+    doneTotal(){
+      return this.todos.reduce((pre, todo) => pre + (todo.done ? 1:0), 0)
+      // const a = this.todos.reduce((pre, current)=>{
+      //   console.log('a',pre, current)
+      //   return pre + (current.done ? 1:0)
+      // },0)
+    }
+  
+    // doneTotal(){
+    //   let total = 0
+    //   this.todo.forEach( (todo) => {
+    //     if(todo.done) total++
+    //   })
+    //   return total
+    // }
+  }
 };
 </script>
 
