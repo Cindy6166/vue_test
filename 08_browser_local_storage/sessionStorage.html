@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sessionStorage</title>
+</head>
+<body>
+    <h2>sessionStorage</h2>
+    <button onclick="saveData()">Save Data</button>
+    <button onclick="readData()">Read Data</button>
+    <button onclick="deleteData()">Delete Data</button>
+    <button onclick="deleteAllData()">Delete All Data</button>
+
+    <script type="text/javascript">
+        let p = {name:'Tom', age:18}
+
+        function saveData(){
+            sessionStorage.setItem('msg', 'Hello!')
+            sessionStorage.setItem('msg2', 666)
+            sessionStorage.setItem('person', JSON.stringify(p))
+        }
+        function readData(){
+            console.log(sessionStorage.getItem('msg'));
+            console.log(sessionStorage.getItem('msg2'));
+            const result = sessionStorage.getItem('person')
+            console.log(JSON.parse(result));
+        }
+        function deleteData(){
+            sessionStorage.removeItem('msg2')
+        }
+        function deleteAllData(){
+            sessionStorage.clear()
+        }
+    </script>
+</body>
+</html>
