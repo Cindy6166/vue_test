@@ -1,0 +1,80 @@
+<template>
+  <li>
+    <label>
+      <input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)"/> 
+
+      <!-- below can realize this feature, but not recommended, because it against the principle of don't modify props -->
+      <!-- <input type="checkbox" v-model="todo.done"> -->
+
+      <span>{{todo.title}}</span>
+    </label>
+    <button class="btn btn-danger" @click="handleDelete(todo.id)">Delete</button>
+  </li>
+</template>
+
+<script>
+export default {
+  name: "Item",
+
+  //declare to receive the todo
+  props:['todo', 'checkTodo', 'deleteTodo'],
+  methods:{
+    // checked or unchecked
+    handleCheck(id){
+      // notify App to change the done value of corresponding object by id
+      this.checkTodo(id)
+    },
+    // delete
+    handleDelete(id){
+      if(confirm('Are you sure to delete this task?')){
+        this.deleteTodo(id)
+      }
+    }
+  }
+};
+</script>
+
+<style scoped>
+/*item*/
+li {
+  list-style: none;
+  height: 36px;
+  line-height: 36px;
+  padding: 0 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+li label {
+  float: left;
+  cursor: pointer;
+}
+
+li label li input {
+  vertical-align: middle;
+  margin-right: 6px;
+  position: relative;
+  top: -1px;
+}
+
+li button {
+  float: right;
+  display: none;
+  margin-top: 3px;
+}
+
+li:before {
+  content: initial;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li:hover {
+  background-color: #ddd;
+}
+
+li:hover button {
+  display: block;
+}
+</style>
