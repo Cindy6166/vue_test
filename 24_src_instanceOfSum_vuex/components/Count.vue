@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>sum:{{ sum }}</h1>
+    <h1>sum:{{$store.state.sum}}</h1>
     <select v-model.number="n">
       <option value="1">1</option>
       <option value="2">2</option>
@@ -19,25 +19,26 @@ export default {
   data() {
     return {
       n: 1,
-      sum: 0,
     };
   },
   methods: {
     increment() {
-      this.sum += this.n;
+        this.$store.commit('PLUS', this.n)
     },
     decrement() {
-      this.sum -= this.n;
+        this.$store.commit('MINUS', this.n)
     },
     incrementOdd() {
-      if (this.sum % 2) {
-        this.sum += this.n;
-      }
+        this.$store.dispatch('plusOdd', this.n)
+    //   if(this.$store.state.sum % 2){
+    //       this.$store.dispatch('plus', this.n)
+    //   }
     },
     incrementWait() {
-      setTimeout(() => {
-        this.sum += this.n;
-      }, 500);
+        this.$store.dispatch('plusWait', this.n)
+    //   setTimeout(() => {
+    //       this.$store.dispatch('plus', this.n)
+    //   }, 500);
     },
   },
 };
