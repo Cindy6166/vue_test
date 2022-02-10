@@ -26,13 +26,15 @@ export default {
     };
   },
   computed:{
-    ...mapState(['sum', 'school', 'subject', 'membersList']),
-    ...mapGetters(['bigSum'])
+    ...mapState('countAbout',['sum','school', 'subject']),
+    ...mapState('personAbout',['membersList']),
+
+    ...mapGetters('countAbout',['bigSum'])
   },
   methods: {
-    ...mapMutations({increment:'PLUS', decrement:'MINUS'}),
+    ...mapMutations('countAbout',{increment:'PLUS', decrement:'MINUS'}),
 
-    ...mapActions({incrementOdd:'plusOdd',incrementWait:'plusWait'}),
+    ...mapActions('countAbout',{incrementOdd:'plusOdd',incrementWait:'plusWait'}),
 
   },
   mounted(){
